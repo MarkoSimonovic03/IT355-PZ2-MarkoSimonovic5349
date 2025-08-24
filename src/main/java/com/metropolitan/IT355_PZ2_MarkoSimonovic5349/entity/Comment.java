@@ -1,5 +1,6 @@
 package com.metropolitan.IT355_PZ2_MarkoSimonovic5349.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,12 @@ public class Comment {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "blog_id", nullable = false)
+    @JsonIgnore
     private Blog blog;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

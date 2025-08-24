@@ -1,5 +1,6 @@
 package com.metropolitan.IT355_PZ2_MarkoSimonovic5349.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,9 +37,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Blog> blogs;
 
     @ManyToMany(mappedBy = "likes")
+    @JsonIgnore
     private Set<Blog> likedBlogs;
 }

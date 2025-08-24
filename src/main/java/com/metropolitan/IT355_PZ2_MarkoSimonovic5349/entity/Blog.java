@@ -23,7 +23,7 @@ public class Blog {
     private String title;
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, length = 500)
     private String content;
 
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class Blog {
     @JoinColumn(name = "user_id", nullable = false)
     private User author;
 
-    @OneToMany(mappedBy = "blog")
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Comment> comments;
 
     @ManyToMany
